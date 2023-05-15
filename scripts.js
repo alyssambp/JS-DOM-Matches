@@ -1,17 +1,20 @@
 var cardsArray = [
-    {    'name': 'CSS',    'img': 'https://github.com/robgmerrill/img/blob/master/css3-logo.png?raw=true',  },
-    {    'name': 'HTML',    'img': 'https://github.com/robgmerrill/img/blob/master/html5-logo.png?raw=true',  },
-    {    'name': 'jQuery',    'img': 'https://github.com/robgmerrill/img/blob/master/jquery-logo.png?raw=true',  },
-    {    'name': 'JS',    'img': 'https://github.com/robgmerrill/img/blob/master/js-logo.png?raw=true',  },
-    {    'name': 'Node',    'img': 'https://github.com/robgmerrill/img/blob/master/nodejs-logo.png?raw=true',  },
+    {    'name': 'CSS','img': 'https://github.com/robgmerrill/img/blob/master/css3-logo.png?raw=true',  },
+    {    'name': 'HTML','img': 'https://github.com/robgmerrill/img/blob/master/html5-logo.png?raw=true',  },
+    {    'name': 'jQuery','img': 'https://github.com/robgmerrill/img/blob/master/jquery-logo.png?raw=true',  },
+    {    'name': 'JS','img': 'https://github.com/robgmerrill/img/blob/master/js-logo.png?raw=true',  },
+    {    'name': 'Node','img': 'https://github.com/robgmerrill/img/blob/master/nodejs-logo.png?raw=true',  },
     {    'name': 'Photo Shop',    'img': 'https://github.com/robgmerrill/img/blob/master/photoshop-logo.png?raw=true',  },
-    {    'name': 'PHP',    'img': 'https://github.com/robgmerrill/img/blob/master/php-logo_1.png?raw=true',  },
-    {    'name': 'Python',    'img': 'https://github.com/robgmerrill/img/blob/master/python-logo.png?raw=true',  },
-    {    'name': 'Ruby',    'img': 'https://github.com/robgmerrill/img/blob/master/rails-logo.png?raw=true',  },
-    {    'name': 'Sass',    'img': 'https://github.com/robgmerrill/img/blob/master/sass-logo.png?raw=true',  },
-    {    'name': 'Sublime',    'img': 'https://github.com/robgmerrill/img/blob/master/sublime-logo.png?raw=true',  },
-    {    'name': 'Wordpress',    'img': 'https://github.com/robgmerrill/img/blob/master/wordpress-logo.png?raw=true',  },
+    {    'name': 'PHP','img': 'https://github.com/robgmerrill/img/blob/master/php-logo_1.png?raw=true',  },
+    {    'name': 'Python','img': 'https://github.com/robgmerrill/img/blob/master/python-logo.png?raw=true',  },
+    {    'name': 'Ruby','img': 'https://github.com/robgmerrill/img/blob/master/rails-logo.png?raw=true',  },
+    {    'name': 'Sass','img': 'https://github.com/robgmerrill/img/blob/master/sass-logo.png?raw=true',  },
+    {    'name': 'Sublime','img': 'https://github.com/robgmerrill/img/blob/master/sublime-logo.png?raw=true',  },
+    {    'name': 'Wordpress','img': 'https://github.com/robgmerrill/img/blob/master/wordpress-logo.png?raw=true',  },
 ];
+
+// Duplicate the cardsArray to create a match for each card
+var gameGrid = cardsArray.concat(cardsArray);
 
 // Grab the div with an id of game-board and assign to a variable game
 var game = document.getElementById("game-board");
@@ -23,7 +26,7 @@ grid.setAttribute("class", "grid");
 game.appendChild(grid);
 
 // Loop through each item in our cards array
-for (i = 0; i < cardsArray.length; i++) {
+for (i = 0; i < gameGrid.length; i++) {
 
     // Create a div element and assign to variable card
     var card = document.createElement("div");
@@ -32,10 +35,10 @@ for (i = 0; i < cardsArray.length; i++) {
     card.classList.add("card");
 
     // Set the data-name attribute of the div to the cardsArray name
-    card.dataset.name = cardsArray[i].name;
+    card.dataset.name = gameGrid[i].name;
 
     // Apply the background image of the div to the cardsArray image
-    card.style.backgroundImage = `url(${cardsArray[i].img})`; // use the ` symbol
+    card.style.backgroundImage = `url(${gameGrid[i].img})`; // use the ` symbol
 
     // Append the div to the grid section
     grid.appendChild(card);
