@@ -48,4 +48,75 @@ for (i = 0; i < gameGrid.length; i++) {
     // Append the div to the grid section
     grid.appendChild(card);
 
+}
+
+var firstGuess = '';
+var secondGuess = '';
+var count = 0;
+var previousTarget = null;
+var delay = 1200; // 1.2 seconds
+
+// Add match CSS
+var match = function() {
+    var selected = document.querySelectorAll(`.selected`);
+    // loop through the array like object containued `selected` class
+    for (i = 0; i < selected.length; i++) {
+        selected[i].classList.add('match');
+    }
 };
+
+// Reset guesses after two attempts
+var resetGuesses = function() {
+    firstGuess = '';
+    secondGuess = '';
+    count = 0;
+    previousTarget = null;
+
+    var selected = document.querySelectorAll('.selected');
+    for (i = 0; i <selected.length; i++) {
+        selected[i].classList.remove('selected');
+    }
+};
+
+// Add event listener to grid
+grid.addEventListener('click', function(event) {
+
+    // Declare variable to target clicked item
+    var clicked = event.target;
+    // Do not allow grid section itself to be selected
+    // only select divs inside the grid
+    if (clicked.nodeName == "section" || clicked == previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains(`selected`)) {
+        return nothing;
+    }
+
+    // Only add `selected` class if the current count is less than 2
+    if (count < 2) {
+        count ++;
+
+        if (count == 1) {
+            // Assign firstGuess
+            firstGuess = clicked.dataset.name;
+            clicked.classList.add(`selected`);
+        } else {
+            // Assign secondGuess
+            secondGuess = clicked.dataset.name;
+            clicked.classList.add(`selected`);
+        }
+    
+
+        // If both guesses are not empty
+        if (firstGuess != '' && secondGuess != '') {
+            // And the firstGuess matches secondGuess
+            if (firstGuess == secondGuess) {
+                // Run the match function
+                setTimeout(match, delay);
+                setTimeout(resetGuesses, delay);
+            } else {
+                setTimeout(resetGuesses, delay);
+            }
+        }
+
+        previousTarget = clicked;
+    }
+
+});
