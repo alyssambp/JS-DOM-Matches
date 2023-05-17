@@ -42,12 +42,19 @@ for (i = 0; i < gameGrid.length; i++) {
     // Set the data-name attribute of the div to the cardsArray name
     card.dataset.name = gameGrid[i].name;
 
-    // Apply the background image of the div to the cardsArray image
-    card.style.backgroundImage = `url(${gameGrid[i].img})`; // use the ` symbol
+    // Create front of card
+    var front = document.createElement('div');
+    front.classList.add('front');
 
-    // Append the div to the grid section
+    // Create back of card
+    var back = document.createElement('div');
+    back.classList.add('back');
+    back.style.backgroundImage = `url(${gameGrid[i].img})`;
+
+    // Append card to grid
     grid.appendChild(card);
-
+    card.appendChild(front);
+    card.appendChild(back);
 }
 
 var firstGuess = '';
@@ -95,12 +102,12 @@ grid.addEventListener('click', function(event) {
 
         if (count == 1) {
             // Assign firstGuess
-            firstGuess = clicked.dataset.name;
-            clicked.classList.add(`selected`);
+            firstGuess = clicked.parentNode.dataset.name;
+            clicked.parentNode.classList.add(`selected`);
         } else {
             // Assign secondGuess
-            secondGuess = clicked.dataset.name;
-            clicked.classList.add(`selected`);
+            secondGuess = clicked.parentNode.dataset.name;
+            clicked.parentNode.classList.add(`selected`);
         }
     
 
